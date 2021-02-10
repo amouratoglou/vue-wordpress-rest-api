@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Wordpress Rest API examples</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.min.js"></script>
+
+    <div id="post">
+      <article>
+        <header>
+          <!-- Here we use {{interpolation}} to render data -->
+          <h1 class="post-title">{{post.title.rendered}}</h1>
+        </header>
+        <!-- Here we use v-html to render HTML content inside the div -->
+        <div class="entry-content" v-html="post.content.rendered"></div>
+      </article>
+    </div>
+
+    <script>
+      /** Set config, replace [yourwebsite] **/
+
+      var config = {
+        api: "http://[yourwebsite]/wp-json/wp/v2/posts/929",
+        nonce: "hiroy",
+      };
+
+      /** This is might need to be removed if you are not within Wordpress**/
+
+      var $ = jQuery;
+
+      /** GET post and start Vue instance**/
+
+      var app;
+      $.get({
+        url: config.api,
+      }).success(function (res) {
+        app = new Vue({
+          el: "#post",
+          data: {
+            post: res,
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
