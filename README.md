@@ -1,6 +1,6 @@
 # Wordpress REST API and Vue.js
 
-I will slowly migrate to this repo a couple of cool examples that I have sitting on my laptop disk 
+I will slowly migrating to this repo a couple of cool examples that I have sitting on my laptop disk 
 using Wordpress REST API and Vue.js
 
 I have been using Wordpress as a freelancer for years and every day I want to walk away from PHP more and more. 
