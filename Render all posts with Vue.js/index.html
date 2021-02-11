@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Wordpress Rest API examples</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.min.js"></script>
+
+  </head>
+  <body>
+
+    <div id="posts">
+        <article class="post-item"  v-for="(post, index) in posts" :key="index">
+            <header>
+                <h1 class="post-title">
+                {{ post.title.rendered }}
+                </h1>
+            </header>
+
+        </article>
+
+    </div>
+
+    <style>
+    .post-item {
+        display: block;
+        margin: 50px auto;
+        box-shadow: 1px 2px 23px #44444454;
+        max-width: 600px;
+        border-radius: 5px;
+        padding: 38px;
+    }
+    </style>
+    <script>
+
+    /** You should use wp_localize_script() to provide this data dynamically */
+    var config = {
+        api: 'http://herzlin.com/wp-json/wp/v2/posts/',
+        nonce: 'hiroy'
+    };
+
+    var $ = jQuery;
+
+    /** GET post and then construct Vue instance with it **/
+    var response = [];
+
+    $.get({
+        url: config.api
+    }).success( function(res) {
+        console.log(res);
+        response = res;
+        app = new Vue({
+            el: '#posts',
+            data: {
+                posts: response,
+            },
+
+        });
+
+    });
+  </body>
+</html>
